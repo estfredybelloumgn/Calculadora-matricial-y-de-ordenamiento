@@ -16,7 +16,7 @@ class CalcMatrix:
                 valor= int(input(f"A[{i}][{j}]:"))
                 fila.append(valor)
             self.matrizA.append(fila)
-        print("Matriz A:")
+        print("\nMatriz A:")
         for fila in self.matrizA:
             for valor in fila:
                 print(f"{valor}", end="\t")
@@ -33,7 +33,7 @@ class CalcMatrix:
                 valor= int(input(f"B[{i}][{j}]:"))
                 fila.append(valor)
             self.matrizB.append(fila)
-        print("Matriz B:")
+        print("\nMatriz B:")
         for fila in self.matrizB:
             for valor in fila:
                 print(f"{valor}", end="\t")
@@ -47,7 +47,7 @@ class CalcMatrix:
             valor=int(input(f"Vector[{i}]: "))
             self.vectorU.append(valor)
 
-        print("Vector ingresado: ")
+        print("\nVector ingresado: ")
         print(self.vectorU)
 
     def suma_matrices(self):
@@ -68,15 +68,18 @@ class CalcMatrix:
                     fila.append(valor)
                 self.resultado.append(fila)
             print("\nResultado: ")
+
     def producto_matrices(self):
         filasA = len(self.matrizA)
         columnasA = len(self.matrizA[0])
         filasB = len(self.matrizB)
         columnasB = len(self.matrizB[0])
-        self.resultado=[]
+        
         if columnasA != filasB:
-            self.resultado = None
+            self.resultado = "No se pueden multiplicar las matrices: las columnas de A deben ser iguales a las filas de B."
+            return
         else:
+            self.resultado=[]
             for i in range (filasA):
                 fila=[]
                 for j in range (columnasB):
@@ -92,6 +95,7 @@ class CalcMatrix:
 
         if columnas != len(self.vectorU):
             self.resultado = ("La cantidad de elementos del vector debe coincidir con las columnas de A.")
+            return
 
         self.resultado = []
 
@@ -103,11 +107,12 @@ class CalcMatrix:
 
     def inversa_matriz(self):
         n=len(self.matrizA)
-        aumentada=[]
-        if n == 0 or any(len(fila)!=n for fila in self.matrizA):
+       
+        if any(len(fila)!=n for fila in self.matrizA):
             self.resultado = ("La matriz debe ser cuadrada para calcular su inversa")
 
-        else:
+        else: 
+            aumentada=[]
             for i in range (n):
                 fila=[]
                 for j in range (n):
@@ -125,8 +130,11 @@ class CalcMatrix:
                     if abs (aumentada[fila][columna])> abs(aumentada[pivote][columna]):
                         pivote=fila
                 if abs(aumentada[pivote][columna])< 1e-12:
-                    self.resultado= "LA matriz no tiene inversa"
-                aumentada[columna], aumentada[pivote] = (aumentada[pivote],aumentada[columna])
+                    self.resultado= "LA matriz no tiene inversa porque es singular"
+                    return
+
+                if pivote != columna:
+                    aumentada[columna], aumentada[pivote] = aumentada[pivote], aumentada[columna]
 
                 valor_pivote = aumentada[columna][columna]
 
@@ -142,9 +150,12 @@ class CalcMatrix:
 
             self.resultado = []
             for i in range(n):
-                fila = []   
+                fila = []
                 for j in range(n, 2 * n):
-                    fila.append(aumentada[i][j])
+                    valor = aumentada[i][j]
+                    if abs(valor) < 1e-12:
+                        valor = 0
+                    fila.append(valor)
                 self.resultado.append(fila)
 
     def get_resultado(self):
