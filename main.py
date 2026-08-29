@@ -1,7 +1,7 @@
 from CalcMatrices import CalcMatrix
-
+from Ordenar import Ordenamientos
 CalcM = CalcMatrix([],[],[],[])
-
+Order = Ordenamientos(0)
 
 def main():
     continuar="s"
