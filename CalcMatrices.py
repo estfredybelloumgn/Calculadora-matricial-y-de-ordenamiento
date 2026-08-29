@@ -4,6 +4,7 @@ class CalcMatrix:
         self.matrizB = matrizB
         self.vectorU = vectorU
         self.resultado = resultado
+
     def pedirM_A(self):
         filas = int(input("Ingrese el número de filas para la matriz A: "))
         columnas = int(input("Ingrese el número de columnas para la matriz A: "))
@@ -41,13 +42,14 @@ class CalcMatrix:
     def pedirVect(self):
         cantidad=int(input("Ingrese la cantidad de elementos del vector: "))
         self.vectorU=[]
+
         for i in range (cantidad):
-            valor=int(input(f"Vector[{i}]:"))
+            valor=int(input(f"Vector[{i}]: "))
             self.vectorU.append(valor)
+
         print("Vector ingresado: ")
-        for valor in vector:
-            print(f"{valor}", end="\t")
-        print()
+        print(self.vectorU)
+
     def suma_matrices(self):
         filasA = len(self.matrizA)
         columnasA = len(self.matrizA[0])
@@ -56,6 +58,8 @@ class CalcMatrix:
         self.resultado=[]
         if filasA != filasB or columnasA != columnasB:
             self.resultado = ("No se pueden sumar matrices con distintas dimensiones")
+            return
+
         else:
             for i in range (filasA):
                 fila=[]
@@ -63,6 +67,7 @@ class CalcMatrix:
                     valor= self.matrizA[i][j]+self.matrizB[i][j]
                     fila.append(valor)
                 self.resultado.append(fila)
+            print("\nResultado: ")
     def producto_matrices(self):
         filasA = len(self.matrizA)
         columnasA = len(self.matrizA[0])
