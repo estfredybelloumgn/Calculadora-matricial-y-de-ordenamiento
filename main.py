@@ -6,8 +6,8 @@ continuar="s"
 def main():
     while (continuar=="s"):
         print("\n-----------CALCULADORA-----------")
-        print("|1.Operaciones con matrices         |")
-        print("|2.Ordenamiento                     |")
+        print("|1.Operaciones con matrices       |")
+        print("|2.Ordenamiento                   |")
         print("|3. SALIR                         |")
         print("-----------------------------------")
 
