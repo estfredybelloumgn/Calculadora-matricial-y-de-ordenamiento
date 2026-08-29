@@ -12,14 +12,14 @@ class CalcMatrix:
         for i in range (filas):
             fila=[]
             for j in range (columnas):
-                valor= float(input(f"A[{i}][{j}]:"))
+                valor= int(input(f"A[{i}][{j}]:"))
                 fila.append(valor)
             self.matrizA.append(fila)
         print("Matriz A:")
         for fila in self.matrizA:
             for valor in fila:
-                print(f"{valor}", " ")
-                print()
+                print(f"{valor}", end="\t")
+            print()
 
     def pedirM_B(self):
         filas = int(input("Ingrese el número de filas para la matriz B: "))
@@ -33,10 +33,10 @@ class CalcMatrix:
                 fila.append(valor)
             self.matrizB.append(fila)
         print("Matriz B:")
-        for fila in self.matrizA:
+        for fila in self.matrizB:
             for valor in fila:
-                print(f"{valor}", " ")
-                print()
+                print(f"{valor}", end="\t")
+            print()
 
     def pedirVect(self):
         cantidad=int(input("Ingrese la cantidad de elementos del vector: "))
@@ -44,7 +44,10 @@ class CalcMatrix:
         for i in range (cantidad):
             valor=int(input(f"Vector[{i}]:"))
             self.vectorU.append(valor)
-        
+        print("Vector ingresado: ")
+        for valor in vector:
+            print(f"{valor}", end="\t")
+        print()
     def suma_matrices(self):
         filasA = len(self.matrizA)
         columnasA = len(self.matrizA[0])
