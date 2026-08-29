@@ -2,8 +2,9 @@ from CalcMatrices import CalcMatrix
 
 CalcM = CalcMatrix([],[],[],[])
 
-continuar="s"
+
 def main():
+    continuar="s"
     while (continuar=="s"):
         print("\n-----------CALCULADORA-----------")
         print("|1.Operaciones con matrices       |")
