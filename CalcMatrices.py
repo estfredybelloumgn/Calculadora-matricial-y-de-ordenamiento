@@ -15,6 +15,12 @@ class CalcMatrix:
                 valor= float(input(f"A[{i}][{j}]:"))
                 fila.append(valor)
             self.matrizA.append(fila)
+        print("Matriz A:")
+        for fila in self.matrizA:
+            for valor in fila:
+                print(f"{valor}", " ")
+                print()
+
     def pedirM_B(self):
         filas = int(input("Ingrese el número de filas para la matriz B: "))
         columnas = int(input("Ingrese el número de columnas para la matriz B: "))
@@ -26,12 +32,19 @@ class CalcMatrix:
                 valor= int(input(f"B[{i}][{j}]:"))
                 fila.append(valor)
             self.matrizB.append(fila)
-    def pedirVect(self, cantidad, valor):
+        print("Matriz B:")
+        for fila in self.matrizA:
+            for valor in fila:
+                print(f"{valor}", " ")
+                print()
+
+    def pedirVect(self):
         cantidad=int(input("Ingrese la cantidad de elementos del vector: "))
         self.vectorU=[]
         for i in range (cantidad):
             valor=int(input(f"Vector[{i}]:"))
             self.vectorU.append(valor)
+        
     def suma_matrices(self):
         filasA = len(self.matrizA)
         columnasA = len(self.matrizA[0])
@@ -40,7 +53,6 @@ class CalcMatrix:
         self.resultado=[]
         if filasA != filasB or columnasA != columnasB:
             self.resultado = ("No se pueden sumar matrices con distintas dimensiones")
-            return self.resultado
         else:
             for i in range (filasA):
                 fila=[]
@@ -56,7 +68,6 @@ class CalcMatrix:
         self.resultado=[]
         if columnasA != filasB:
             self.resultado = None
-            return self.resultado
         else:
             for i in range (filasA):
                 fila=[]
@@ -68,19 +79,18 @@ class CalcMatrix:
                 self.resultado.append(fila)
 
     def producto_matriz_vector(self):
-        filas = len(self.matriz_a)
-        columnas = len(self.matriz_a[0])
+        filas = len(self.matrizA)
+        columnas = len(self.matrizA[0])
 
         if columnas != len(self.vectorU):
             self.resultado = ("La cantidad de elementos del vector debe coincidir con las columnas de A.")
-            return
 
         self.resultado = []
 
         for i in range(filas):
             suma = 0
             for j in range(columnas):
-                suma += self.matriz_a[i][j] * self.vector[j]
+                suma += self.matrizA[i][j] * self.vectorU[j]
             self.resultado.append(suma)
 
     def inversa_matriz(self):
@@ -88,7 +98,7 @@ class CalcMatrix:
         aumentada=[]
         if n == 0 or any(len(fila)!=n for fila in self.matrizA):
             self.resultado = ("La matriz debe ser cuadrada para calcular su inversa")
-            return
+
         else:
             for i in range (n):
                 fila=[]
