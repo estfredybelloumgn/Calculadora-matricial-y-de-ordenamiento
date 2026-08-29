@@ -43,7 +43,39 @@ def main():
                 print(resultado)
             else:
                 print("ERROR: Operación no valida")
+        elif opcion_principal == 2:
+            cantidad = int(input("\n¿Cuántos números aleatorios desea generar?: "))
 
+            if cantidad <= 0:
+                print("La cantidad debe ser mayor que cero.")
+            else:
+                ordenar = Ordenamientos(cantidad)
+
+                print("\nLista original:")
+                print(ordenar.get_lista_original())
+
+                print("\n------ MÉTODOS DE ORDENAMIENTO ------")
+                print("1. Método burbuja")
+                print("2. Método inserción")
+                print("3. Método selección")
+                print("4. Método merge sort")
+                print("5. Método sort de Python")
+
+                opcion_ordenamiento = int(input("\nSeleccione el método de ordenamiento: "))
+
+                if opcion_ordenamiento >= 1 and opcion_ordenamiento <= 5:
+                    ordenar.ordenar(opcion_ordenamiento)
+
+                    print("\nLista ordenada:")
+                    print(ordenar.get_resultado())
+                else:
+                    print("Error: opción de ordenamiento no válida.")
+        elif opcion_principal == 3:
+            print("\nPrograma finalizado.")
+            continuar = "n"
+        else:
+            print("\nError: opción principal no válida.")
+        
 
 if __name__ == "__main__":
     main()
